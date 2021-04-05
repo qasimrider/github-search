@@ -1,0 +1,49 @@
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileSdkVersion(AppConfig.targetSdk)
+                defaultConfig {
+                    minSdkVersion(AppConfig.minSdk)
+                    targetSdkVersion(AppConfig.targetSdk)
+                    testInstrumentationRunner(AppConfig.androidTestInstrumentation)
+
+                }
+
+
+
+
+                buildTypes {
+                    release {
+                        buildConfigField "String", "END_POINT", '"https://api.nytimes.com/svc/"'
+                        resValue "string", "application_name", "News App"
+                    }
+
+                    debug {
+                        buildConfigField "String", "END_POINT", '"https://api.nytimes.com/svc/"'
+                        resValue "string", "application_name", "News App Dev"
+                    }
+                }
+
+                viewBinding {
+                    android.buildFeatures.viewBinding = true
+                    android.buildFeatures.dataBinding = true
+                }
+
+//                kotlinOptions {
+//                    jvmTarget = JavaVersion.VERSION_1_8.toString()
+//                }
+
+                kotlinOptions {
+                    jvmTarget = '1.8'
+                }
+            }
+
+//            dependencies {
+//                implementation fileTree(dir: 'libs', include: ['*.jar'])
+////                implementation deps.kotlin
+//            }
+        }
+    }
+}
+
