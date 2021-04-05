@@ -7,21 +7,18 @@ subprojects {
                     minSdkVersion(AppConfig.minSdk)
                     targetSdkVersion(AppConfig.targetSdk)
                     testInstrumentationRunner(AppConfig.androidTestInstrumentation)
-
+                    vectorDrawables.useSupportLibrary true
                 }
-
-
-
 
                 buildTypes {
                     release {
                         buildConfigField "String", "END_POINT", '"https://api.nytimes.com/svc/"'
-                        resValue "string", "application_name", "News App"
+                        resValue "string", "application_name", "Git Hub Search"
                     }
 
                     debug {
                         buildConfigField "String", "END_POINT", '"https://api.nytimes.com/svc/"'
-                        resValue "string", "application_name", "News App Dev"
+                        resValue "string", "application_name", "Git Hub Search Dev"
                     }
                 }
 
@@ -30,19 +27,13 @@ subprojects {
                     android.buildFeatures.dataBinding = true
                 }
 
-//                kotlinOptions {
-//                    jvmTarget = JavaVersion.VERSION_1_8.toString()
-//                }
+
 
                 kotlinOptions {
                     jvmTarget = '1.8'
                 }
             }
 
-//            dependencies {
-//                implementation fileTree(dir: 'libs', include: ['*.jar'])
-////                implementation deps.kotlin
-//            }
         }
     }
 }
