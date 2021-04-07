@@ -49,24 +49,21 @@ class GitHubReposListFragment : BaseFragment() {
     override fun attachListeners() {
         super.attachListeners()
 
-
         viewBinding.searchEditText.doOnTextChanged { text, _, _, _ ->
             Log.d(TAG, "attachListeners: ")
 
             text?.let {
                 it.length
                     .requireSize()
-                    .runIfTrue { viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params(text.toString())) }
+                    .runIfTrue {
+                        showProgress(true, true)
+                        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params(text.toString())) }
             }
-
         }
 
         adapter.clickListener = { repo, view ->
 
-
         }
-
-
     }
 
     //endregion

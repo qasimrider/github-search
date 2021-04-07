@@ -42,6 +42,8 @@
             android:background="@drawable/corner_background"
             android:drawableLeft="@drawable/ic_search"
             android:padding="13dp"
+            android:imeOptions="actionDone"
+            android:inputType="text"
             android:drawablePadding="13dp"
             app:layout_constraintEnd_toEndOf="@+id/repositoryLibTitle"
             app:layout_constraintStart_toStartOf="@+id/repositoryLibTitle"
