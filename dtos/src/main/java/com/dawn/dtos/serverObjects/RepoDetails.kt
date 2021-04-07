@@ -80,9 +80,6 @@ data class RepoDetails(
     val url: String?,
     val watchers: Int?,
     val watchers_count: Int?
-)
-
-{
-    fun toView () = RepoDetailsView(full_name!!
-        ,description!!
-    ) }
+) {
+    fun toView() = RepoDetailsView(id!!,full_name!!, description!!, owner?.toView()!!)
+}

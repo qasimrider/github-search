@@ -8,9 +8,7 @@
         <variable
             name="repo"
             type="com.dawn.dtos.gitHubSearch.RepoDetailsView" />
-        <variable
-            name="owner"
-            type="com.dawn.dtos.gitHubSearch.OwnerView" />
+
     </data>
     <!--    android:transitionName="@{@string/news_item_transition_name(news.id)}"-->
 
@@ -33,7 +31,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:imageUrl="@{owner.avatar}"
+                app:imageUrl="@{repo.owner.avatar}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -61,12 +59,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/black"
+                android:text="@{repo.description}"
                 app:layout_constraintEnd_toEndOf="@+id/repoName"
                 app:layout_constraintStart_toStartOf="@+id/repoName"
                 app:layout_constraintTop_toBottomOf="@+id/repoName"
                 tools:text="This is the Detail of the Repos" />
 
-<!--            android:text="@{repo.description}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

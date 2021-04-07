@@ -7,14 +7,19 @@ import androidx.lifecycle.viewModelScope
 import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import com.dawn.common.base.BaseViewModel
 import com.dawn.dtos.gitHubSearch.GitHubRepoView
+import com.dawn.dtos.gitHubSearch.RepoDetailsView
 
 class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUsecase) :
     BaseViewModel() {
 
 
     //region Live Data
+    private val _reposList = MutableLiveData<List<RepoDetailsView>>()
+    val reposList: LiveData<List<RepoDetailsView>>
+        get() = _reposList
+
     private val _searchReposList = MutableLiveData<GitHubRepoView>()
-    private val searchReposList: LiveData<GitHubRepoView>
+    val searchReposList: LiveData<GitHubRepoView>
         get() = _searchReposList
     //endregion
 
@@ -22,10 +27,11 @@ class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUs
 
         getGitHubRepoUsecase(viewModelScope, params) { response ->
             response.either(::handleFailure) { success ->
-                _searchReposList.apply {
-                    this.value = success
-                }
 
+                success.run {
+                    _searchReposList.value = this
+                    _reposList.value = this.repoList
+                }
             }
 
         }
