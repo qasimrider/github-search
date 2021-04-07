@@ -50,5 +50,6 @@ dependencies {
     implementation(project(":repositories"))
     implementation(project(":network"))
     implementation(project(":business"))
+    implementation(project(":featureGithubSearch"))
 
 }

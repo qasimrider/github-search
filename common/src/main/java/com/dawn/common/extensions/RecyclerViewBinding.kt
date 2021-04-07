@@ -1,7 +1,5 @@
 package com.dawn.common.extensions
 
-
-
 import android.graphics.Rect
 import android.view.View
 import androidx.databinding.BindingAdapter
@@ -19,16 +17,6 @@ enum class MarginStrategy {
     ALL_BUT_TOP_AND_BOTTOM,
     ALL_SIDES,
 }
-
-
-//@BindingAdapter("items")
-//fun <T> RecyclerView.populateList(list: List<T>?) {
-//
-//    if (this.adapter is ListAdapter<*, *>) {
-//        (adapter as ListAdapter<T, *>).submitList(list)
-//
-//    }
-//}
 
 
 @BindingAdapter(value = ["showVerticalList", "items"], requireAll = false)

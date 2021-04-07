@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -19,10 +20,15 @@ import com.dawn.common.extensions.invisible
 import com.dawn.common.extensions.visible
 
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(){
+
+//BaseFragment(@LayoutRes val layoutId: Int) :
+//    Fragment(layoutId) {
 
     //region Props
     protected var binding: ViewDataBinding? = null
+    protected open var shouldBindData = false
+
     protected var progressBar: ProgressBar? = null
     //endregion
 
@@ -82,7 +88,7 @@ abstract class BaseFragment : Fragment() {
     //endregion
 
     //region Abstracts
-    protected open var shouldBindData = false
+//    protected open var shouldBindData = false
     protected abstract fun layoutResourceId(): Int
     protected open fun attachListeners() {
 
@@ -107,7 +113,7 @@ abstract class BaseFragment : Fragment() {
     ): View {
         return if (shouldBindData) {
             binding = DataBindingUtil.inflate(
-                inflater, layoutResourceId(), container, false
+                    inflater, layoutResourceId(), container, false
             )
             Log.d("Binding", "OnCreateView");
             binding!!.lifecycleOwner = viewLifecycleOwner

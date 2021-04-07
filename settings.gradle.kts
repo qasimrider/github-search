@@ -1,4 +1,4 @@
-
+include(":featureGithubSearch")
 include (":repositories")
 include (":network")
 include (":common")
