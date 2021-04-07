@@ -139,8 +139,8 @@ abstract class BaseFragment : Fragment(){
 //                )
 //            showProgress(false, false)
 //        }
-        attachListeners()
         initialize(savedInstanceState)
+        attachListeners()
     }
 
 

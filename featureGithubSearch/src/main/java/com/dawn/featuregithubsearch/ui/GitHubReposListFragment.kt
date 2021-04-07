@@ -1,12 +1,15 @@
 package com.dawn.featuregithubsearch.ui
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import androidx.core.widget.doOnTextChanged
+import androidx.viewbinding.ViewBinding
 import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import com.dawn.common.base.BaseFragment
 import com.dawn.common.base.GeneralAdapter
-import com.dawn.common.extensions.fault
-import com.dawn.common.extensions.observe
-import com.dawn.common.extensions.sharedGraphViewModel
+import com.dawn.common.extensions.*
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
 import com.dawn.featuregithubsearch.BR
 import com.dawn.featuregithubsearch.R
@@ -17,8 +20,10 @@ class GitHubReposListFragment : BaseFragment() {
 
 
     //region Props
+    private lateinit var viewBinding: GitHubReposListFragmentBinding
     override var shouldBindData: Boolean = true
-    private val adapter =  GeneralAdapter(BR.repo,R.layout.repos_item,RepoDetailsView.DIFF_CALLBACK)
+    private val adapter =
+        GeneralAdapter(BR.repo, R.layout.repos_item, RepoDetailsView.DIFF_CALLBACK)
     //endregion
 
     //region Koin Injects
@@ -32,18 +37,31 @@ class GitHubReposListFragment : BaseFragment() {
 
         attachObservers()
 
-       val viewBinding =  binding as GitHubReposListFragmentBinding
+        viewBinding = binding as GitHubReposListFragmentBinding
         viewBinding.viewModel = viewModel
         viewBinding.adapter = adapter
 //        viewBinding.reposRv.configureVerticalList(adapter)
 
-        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params("qasd"))
+//        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params("qasd"))
     }
+
 
     override fun attachListeners() {
         super.attachListeners()
 
-        adapter.clickListener = {repo,view ->
+
+        viewBinding.searchEditText.doOnTextChanged { text, _, _, _ ->
+            Log.d(TAG, "attachListeners: ")
+
+            text?.let {
+                it.length
+                    .requireSize()
+                    .runIfTrue { viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params(text.toString())) }
+            }
+
+        }
+
+        adapter.clickListener = { repo, view ->
 
 
         }
@@ -52,7 +70,6 @@ class GitHubReposListFragment : BaseFragment() {
     }
 
     //endregion
-
 
     //region Observers
     fun attachObservers() {
