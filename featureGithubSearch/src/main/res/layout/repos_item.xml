@@ -5,39 +5,41 @@
 
     <data>
 
-<!--        <variable-->
-<!--            name="news"-->
-<!--            type="com.nytimes.newsapp.dtos.news.NewsView" />-->
+        <variable
+            name="repo"
+            type="com.dawn.dtos.gitHubSearch.RepoDetailsView" />
+        <variable
+            name="owner"
+            type="com.dawn.dtos.gitHubSearch.OwnerView" />
     </data>
-<!--    android:transitionName="@{@string/news_item_transition_name(news.id)}"-->
+    <!--    android:transitionName="@{@string/news_item_transition_name(news.id)}"-->
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:cardCornerRadius="4dp"
-        app:cardElevation="5dp"
-        >
+        app:cardElevation="5dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+
+            <ImageView
                 android:id="@+id/newsCiv"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                app:civ_border_color="?attr/colorSurface"
-                app:civ_border_width="2dp"
-                app:imageUrl="@{news.largestPicture.url}"
+                app:imageUrl="@{owner.avatar}"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/newsDescription"
+                android:id="@+id/repoName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -46,53 +48,25 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/open_sans_bold"
-                android:text="@{news.title}"
+                android:text="@{repo.fullName}"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/newsCiv"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="This is the Detail of the news" />
+                tools:text="Name of The repo" />
 
             <TextView
-                android:id="@+id/authorName"
+                android:id="@+id/repoDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@{news.authors}"
                 android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="@+id/newsDescription"
-                app:layout_constraintStart_toStartOf="@+id/newsDescription"
-                app:layout_constraintTop_toBottomOf="@+id/newsDescription" />
+                app:layout_constraintEnd_toEndOf="@+id/repoName"
+                app:layout_constraintStart_toStartOf="@+id/repoName"
+                app:layout_constraintTop_toBottomOf="@+id/repoName"
+                tools:text="This is the Detail of the Repos" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/dateView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
-                android:drawablePadding="8dp"
-                android:drawableTint="@color/black"
-                android:gravity="center_vertical"
-                android:text="@{news.date}"
-                android:textColor="@color/black"
-                app:drawableStartCompat="@drawable/ic_calendar"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/authorName"
-                app:layout_constraintTop_toBottomOf="@+id/authorName"
-                tools:text="20-12-2030" />
-
-<!--            <View-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="1dp"-->
-<!--                android:layout_marginStart="8dp"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="8dp"-->
-<!--                android:layout_marginBottom="16dp"-->
-<!--                android:background="@color/grey"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/dateView" />-->
+<!--            android:text="@{repo.description}"-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

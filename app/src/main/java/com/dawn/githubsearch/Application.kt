@@ -2,6 +2,7 @@ package com.dawn.githubsearch
 
 import android.app.Application
 import com.dawn.business.useCasesDependencies
+import com.dawn.featuregithubsearch.gitHubDependencies
 import com.dawn.network.networkModule
 import com.dawn.repositories.repoDependencies
 
@@ -22,6 +23,7 @@ class Application : Application() {
                     useCasesDependencies,
                     repoDependencies,
                     networkModule,
+                    gitHubDependencies
                 )
             )
         }

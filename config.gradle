@@ -12,12 +12,12 @@ subprojects {
 
                 buildTypes {
                     release {
-                        buildConfigField "String", "END_POINT", '"https://api.nytimes.com/svc/"'
+                        buildConfigField "String", "END_POINT", '"https://api.github.com/"'
                         resValue "string", "application_name", "Git Hub Search"
                     }
 
                     debug {
-                        buildConfigField "String", "END_POINT", '"https://api.nytimes.com/svc/"'
+                        buildConfigField "String", "END_POINT", '"https://api.github.com/"'
                         resValue "string", "application_name", "Git Hub Search Dev"
                     }
                 }
