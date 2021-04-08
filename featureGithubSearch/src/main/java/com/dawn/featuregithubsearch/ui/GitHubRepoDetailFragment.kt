@@ -1,5 +1,6 @@
 package com.dawn.featuregithubsearch.ui
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.navigation.fragment.navArgs
 import com.dawn.common.base.BaseFragment
@@ -11,6 +12,7 @@ import com.dawn.featuregithubsearch.BR
 import com.dawn.featuregithubsearch.features.GitHubAction
 import com.dawn.featuregithubsearch.features.GitHubState
 import com.dawn.featuregithubsearch.features.GithubIntent
+import com.google.android.material.transition.MaterialContainerTransform
 
 class GitHubRepoDetailFragment : BaseFragment<GithubIntent, GitHubAction, GitHubState>() {
 
@@ -23,9 +25,19 @@ class GitHubRepoDetailFragment : BaseFragment<GithubIntent, GitHubAction, GitHub
 
     //region Overrides
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.nav_host_fragment
+            duration = 400.toLong()
+            scrimColor = Color.TRANSPARENT
+        }
+    }
+
     override fun getViewModel(): BaseViewModel<GithubIntent, GitHubAction, GitHubState> {
         TODO("Not yet implemented")
     }
+
     override fun layoutResourceId() = R.layout.git_hub_repo_detail_fragment
 
     override fun initialize(savedInstanceState: Bundle?) {

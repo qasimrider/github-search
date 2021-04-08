@@ -8,14 +8,14 @@ import com.dawn.common.mvi.IModel
 import com.dawn.common.mvi.ViewAction
 import com.dawn.common.mvi.ViewIntent
 import com.dawn.common.mvi.ViewState
-import com.dawn.common.singleLiveData.SingleLiveEvent
+import com.dawn.common.singleLiveData.SingleLiveEventMutableLiveData
 
 abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState>() :
     ViewModel(), IModel<STATE, INTENT> {
 
 
     //region Live Data
-    var errorEntity: SingleLiveEvent<ErrorEntity> = SingleLiveEvent()
+    var errorEntity: SingleLiveEventMutableLiveData<ErrorEntity> = SingleLiveEventMutableLiveData()
     protected val mState = MutableLiveData<STATE>()
     override val state: LiveData<STATE>
         get() {
@@ -26,6 +26,7 @@ abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : V
     final override fun dispatchIntent(intent: INTENT) {
         handleAction(intentToAction(intent))
     }
+
     abstract fun intentToAction(intent: INTENT): ACTION
     abstract fun handleAction(action: ACTION)
 

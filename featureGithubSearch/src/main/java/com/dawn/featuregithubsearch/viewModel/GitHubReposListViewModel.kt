@@ -24,7 +24,8 @@ class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUs
     private fun getRepoSearchResult(params: GetGitHubRepoUsecase.Params) {
         mState.postValue(GitHubState.Loading)
         getGitHubRepoUsecase(viewModelScope, params) { response ->
-            mState.postValue(response.reduce())
+            mState.postValue(response.reduce(_reposList))
+
 
         }
     }

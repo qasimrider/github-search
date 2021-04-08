@@ -10,15 +10,16 @@
             type="com.dawn.dtos.gitHubSearch.RepoDetailsView" />
 
     </data>
-    <!--    android:transitionName="@{@string/news_item_transition_name(news.id)}"-->
 
-<!--    <com.google.android.material.card.MaterialCardView-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        app:cardUseCompatPadding="true"-->
-<!--        app:cardBackgroundColor="@color/white"-->
-<!--        app:cardCornerRadius="4dp"-->
-<!--        app:cardElevation="2dp">-->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="4dp"
+        android:padding="33dp"
+        android:transitionName="@{@string/repo_item_transition_name(repo.id)}"
+        app:cardElevation="2dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -69,5 +70,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-<!--    </com.google.android.material.card.MaterialCardView>-->
+    </com.google.android.material.card.MaterialCardView>
 </layout>

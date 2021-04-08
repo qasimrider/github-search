@@ -7,7 +7,7 @@ import androidx.lifecycle.Observer
 import com.dawn.common.extensions.TAG
 import java.util.concurrent.atomic.AtomicBoolean
 
-class SingleLiveEvent<T> : MutableLiveData<T>() {
+class SingleLiveEventMutableLiveData<T> : MutableLiveData<T>() {
     private val pending = AtomicBoolean(false)
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
@@ -27,6 +27,10 @@ class SingleLiveEvent<T> : MutableLiveData<T>() {
     override fun setValue(t: T?) {
         pending.set(true)
         super.setValue(t)
+    }
+
+    public override fun postValue(value: T) {
+        super.postValue(value)
     }
 
 }

@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import androidx.core.view.doOnPreDraw
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
@@ -20,11 +23,13 @@ import com.dawn.featuregithubsearch.features.GitHubAction
 import com.dawn.featuregithubsearch.features.GitHubState
 import com.dawn.featuregithubsearch.features.GithubIntent
 import com.dawn.featuregithubsearch.viewModel.GitHubReposListViewModel
+import com.google.android.material.transition.MaterialElevationScale
 
 class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubState>() {
 
 
     //region Props
+    private var previousText: String = ""
     private lateinit var viewBinding: GitHubReposListFragmentBinding
     private val adapter =
         GeneralAdapter(BR.repo, R.layout.repos_item, RepoDetailsView.DIFF_CALLBACK)
@@ -34,7 +39,12 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     private val viewModel by sharedGraphViewModel<GitHubReposListViewModel>(R.id.githubSearchNavigation)
     //endregion
 
-    //region Overrides
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
+    }
+
     override fun layoutResourceId(): Int = R.layout.git_hub_repos_list_fragment
 
     override fun initialize(savedInstanceState: Bundle?) {
@@ -52,21 +62,32 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
 
         viewBinding.searchEditText.doOnTextChanged { text, _, _, _ ->
             Log.d(TAG, "attachListeners: ")
-
-            text?.let {
-                it.length
-                    .requireSize()
-                    .runIfTrue {
-//                        showProgress(true, true)
-                        dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
-//                        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params(text.toString()))
-                    }
+            if (text.toString() != previousText) {
+                text?.let {
+                    it.length
+                        .requireSize()
+                        .runIfTrue {
+                            previousText = text.toString()
+                            dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
+                        }
+                }
             }
         }
 
         adapter.clickListener = { repo, view ->
 
-            findNavController().navigate(GitHubReposListFragmentDirections.toGitHubDetail(repo))
+            exitTransition = MaterialElevationScale(false).apply {
+                duration = 400L
+            }
+            reenterTransition = MaterialElevationScale(true).apply {
+                duration = 400L
+            }
+            val repoItemDetailTransition = getString(R.string.repo_item_detail_transition_name)
+            val extras = FragmentNavigatorExtras(view to repoItemDetailTransition)
+            findNavController().navigate(
+                GitHubReposListFragmentDirections.toGitHubDetail(repo),
+                extras
+            )
         }
     }
 
@@ -80,7 +101,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
 //            }
             fault(errorEntity, ::handleFailure)
 
-            observe(state) {state ->
+            observe(state) { state ->
 
                 showProgress(state is GitHubState.Loading, state is GitHubState.Loading)
 

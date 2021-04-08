@@ -1,8 +1,9 @@
 package com.dawn.common.extensions
 
+const val MINIMUM_CHARACTER_LENGTH = 3
 
 fun Int.requireSize(): Boolean {
-    return this >= 3
+    return this >= MINIMUM_CHARACTER_LENGTH
 }
 
 fun Boolean.runIfTrue(block: () -> Unit) {

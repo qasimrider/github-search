@@ -1,0 +1,5 @@
+<resources>
+
+    <string name="repo_item_transition_name">repo_item_%1$s</string>
+    <string name="repo_item_detail_transition_name">repo_detail_transition</string>
+</resources>
