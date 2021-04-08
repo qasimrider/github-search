@@ -1,19 +1,22 @@
 package com.dawn.dtos.gitHubSearch
 
+import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.DiffUtil
-import com.dawn.dtos.serverObjects.Owner
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
-@Serializable
+@Parcelize
 data class GitHubRepoView(
     val repoList: List<RepoDetailsView>?,
     val totalCount: Int?
-)
+) : Parcelable
 
 
-@Serializable
-data class RepoDetailsView(val id : Int, val fullName: String?, val description: String? , val owner : OwnerView)
+@Parcelize
+data class RepoDetailsView(val id : Int, val fullName: String?, val description: String? ,val forks : Int,
+                           val issuesCount : Int,val language: String?,val starredCount : Int,
+                           val owner : OwnerView) : Parcelable
 {
 
         companion object {
@@ -40,5 +43,5 @@ data class RepoDetailsView(val id : Int, val fullName: String?, val description:
     }
 }
 
-@Serializable
-data class OwnerView(val avatar: String?)
+@Parcelize
+data class OwnerView(val avatar: String?) : Parcelable

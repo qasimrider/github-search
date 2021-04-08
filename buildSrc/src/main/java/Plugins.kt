@@ -14,6 +14,7 @@ const val PLUGIN_KOTLINX_SERIALIZATION = "org.jetbrains.kotlin.plugin.serializat
 const val PLUGIN_NAV_SAFE_ARGS_KOTLIN = "androidx.navigation.safeargs.kotlin"
 const val PLUGIN_DAGGER_HILT_ANDROID = "dagger.hilt.android.plugin"
 const val PLUGIN_PROTOBUF = "com.google.protobuf"
+const val PLUGIN_KOTLIN_PARCELIZE = "kotlin-parcelize"
 
 
 
@@ -29,6 +30,9 @@ fun PluginDependenciesSpec.androidLibrary(): PluginDependencySpec {
 
 fun PluginDependenciesSpec.kotlin(): PluginDependencySpec {
     return id(PLUGIN_KOTLIN)
+}
+fun PluginDependenciesSpec.kotlinParcelize(): PluginDependencySpec {
+    return id(PLUGIN_KOTLIN_PARCELIZE)
 }
 
 

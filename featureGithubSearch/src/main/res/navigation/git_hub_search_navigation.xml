@@ -11,16 +11,20 @@
         tools:layout="@layout/git_hub_repos_list_fragment"
         android:label="GitHubRepoList" >
 
+        <action
+            android:id="@+id/to_gitHubDetail"
+            app:destination="@id/gitHubDetail" />
     </fragment>
 
 
-<!--    <fragment-->
-<!--        android:id="@+id/gitHubDetail"-->
-<!--        tools:layout="@layout/fragment_news_detail"-->
-<!--        android:name="com.nytimes.newsapp.news.ui.NewsDetailFragment"-->
-<!--        android:label="NewsDetail" >-->
-<!--        <argument-->
-<!--            android:name="news"-->
-<!--            app:argType="com.nytimes.newsapp.dtos.news.NewsView" />-->
-<!--    </fragment>-->
+    <fragment
+        android:id="@+id/gitHubDetail"
+        tools:layout="@layout/git_hub_repo_detail_fragment"
+        android:name="com.dawn.featuregithubsearch.ui.GitHubRepoDetailFragment"
+        android:label="GitHUbDetail" >
+
+        <argument
+            android:name="repoDetails"
+            app:argType="com.dawn.dtos.gitHubSearch.RepoDetailsView" />
+    </fragment>
 </navigation>

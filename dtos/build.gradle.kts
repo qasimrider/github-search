@@ -3,6 +3,7 @@ plugins {
     kotlinAndroid()
     kotlinKapt()
     kotlinxSerialization()
+    kotlinParcelize()
 }
 
 

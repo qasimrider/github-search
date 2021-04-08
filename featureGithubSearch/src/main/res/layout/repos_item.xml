@@ -26,7 +26,7 @@
 
 
             <ImageView
-                android:id="@+id/newsCiv"
+                android:id="@+id/githubAvatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="16dp"
@@ -50,7 +50,7 @@
                 android:text="@{repo.fullName}"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/newsCiv"
+                app:layout_constraintStart_toEndOf="@+id/githubAvatar"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Name of The repo" />
 

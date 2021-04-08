@@ -13,7 +13,10 @@ data class GitHubRepos(
 ) {
     fun toView() = GitHubRepoView(items!!.map {
         if (it.description == null) {
-            RepoDetailsView(it.id!!,it.full_name, "", OwnerView(it.owner?.avatar_url))
+            RepoDetailsView(
+                it.id!!, it.full_name, "", it.forks!!,
+                it.open_issues!!, it.language,it.stargazers_count!!, OwnerView(it.owner?.avatar_url)
+            )
         } else {
             it.toView()
         }

@@ -8,10 +8,29 @@ import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import com.dawn.common.base.BaseViewModel
 import com.dawn.dtos.gitHubSearch.GitHubRepoView
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
+import com.dawn.featuregithubsearch.features.GitHubAction
+import com.dawn.featuregithubsearch.features.GitHubState
+import com.dawn.featuregithubsearch.features.GithubIntent
 
 class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUsecase) :
-    BaseViewModel() {
+    BaseViewModel<GithubIntent, GitHubAction, GitHubState>() {
 
+
+    override fun intentToAction(intent: GithubIntent): GitHubAction {
+
+        return when (intent) {
+            is GithubIntent.SearchCharacter -> GitHubAction.SearchCharacters(intent.query)
+        }
+    }
+
+    override fun handleAction(action: GitHubAction) {
+
+        when (action)
+        {
+            is GitHubAction.SearchCharacters ->
+                getRepoSearchResult(GetGitHubRepoUsecase.Params(action.query))
+        }
+    }
 
     //region Live Data
     private val _reposList = MutableLiveData<List<RepoDetailsView>>()
@@ -38,5 +57,6 @@ class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUs
 
 
     }
+
 
 }

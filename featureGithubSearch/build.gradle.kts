@@ -2,7 +2,8 @@ plugins {
     androidLibrary()
     kotlinAndroid()
     kotlinKapt()
-    kotlinxSerialization()
+//    kotlinParcelize()
+//    kotlinxSerialization()
     navSafeArgsKotlin()
 }
 
@@ -17,5 +18,6 @@ dependencies {
     implementation(project(":common"))
     implementation(project(":business"))
     implementation(project(":dtos"))
+
 
 }

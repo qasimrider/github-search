@@ -2,6 +2,7 @@ package com.dawn.dtos.serverObjects
 
 import com.dawn.dtos.gitHubSearch.GitHubRepoView
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -50,6 +51,7 @@ data class RepoDetails(
     val labels_url: String?,
     val language: String?,
     val languages_url: String?,
+    @Contextual
     val license: License?,
     val merges_url: String?,
     val milestones_url: String?,
@@ -59,6 +61,7 @@ data class RepoDetails(
     val notifications_url: String?,
     val open_issues: Int?,
     val open_issues_count: Int?,
+    @Contextual
     val owner: Owner?,
     val `private`: Boolean?,
     val pulls_url: String?,
@@ -81,5 +84,8 @@ data class RepoDetails(
     val watchers: Int?,
     val watchers_count: Int?
 ) {
-    fun toView() = RepoDetailsView(id!!,full_name!!, description!!, owner?.toView()!!)
+    fun toView() = RepoDetailsView(
+        id!!, full_name!!, description!!, forks!!, open_issues_count!!,
+        language, stargazers_count!!, owner?.toView()!!
+    )
 }

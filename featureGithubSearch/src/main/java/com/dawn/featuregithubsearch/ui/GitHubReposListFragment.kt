@@ -5,6 +5,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import androidx.core.widget.doOnTextChanged
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import com.dawn.common.base.BaseFragment
@@ -14,9 +15,12 @@ import com.dawn.dtos.gitHubSearch.RepoDetailsView
 import com.dawn.featuregithubsearch.BR
 import com.dawn.featuregithubsearch.R
 import com.dawn.featuregithubsearch.databinding.GitHubReposListFragmentBinding
+import com.dawn.featuregithubsearch.features.GitHubAction
+import com.dawn.featuregithubsearch.features.GitHubState
+import com.dawn.featuregithubsearch.features.GithubIntent
 import com.dawn.featuregithubsearch.viewModel.GitHubReposListViewModel
 
-class GitHubReposListFragment : BaseFragment() {
+class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubState>() {
 
 
     //region Props
@@ -56,13 +60,16 @@ class GitHubReposListFragment : BaseFragment() {
                 it.length
                     .requireSize()
                     .runIfTrue {
-                        showProgress(true, true)
-                        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params(text.toString())) }
+//                        showProgress(true, true)
+                        dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
+//                        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params(text.toString()))
+                    }
             }
         }
 
         adapter.clickListener = { repo, view ->
 
+            findNavController().navigate(GitHubReposListFragmentDirections.toGitHubDetail(repo))
         }
     }
 
@@ -76,7 +83,26 @@ class GitHubReposListFragment : BaseFragment() {
             }
             fault(errorEntity, ::handleFailure)
 
+            observe(state) {
+                when (state.value) {
+
+                    is GitHubState.Loading -> {
+
+                    }
+
+                    is GitHubState.ResultSearch -> {
+
+                        Log.d(TAG, "attachObservers: ")
+                    }
+                }
+
+            }
+
         }
+    }
+
+    override fun initEVENT() {
+        TODO("Not yet implemented")
     }
     //endregion
 

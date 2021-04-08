@@ -18,12 +18,22 @@ import com.dawn.common.error.ErrorEntity
 import com.dawn.common.error.ErrorEntity.*
 import com.dawn.common.extensions.invisible
 import com.dawn.common.extensions.visible
+import com.dawn.common.mvi.ViewAction
+import com.dawn.common.mvi.ViewIntent
+import com.dawn.common.mvi.ViewState
 
 
-abstract class BaseFragment : Fragment(){
+abstract class BaseFragment
+<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState>
+    : Fragment(){
 
-//BaseFragment(@LayoutRes val layoutId: Int) :
-//    Fragment(layoutId) {
+
+
+
+    abstract fun initEVENT()
+    fun dispatchIntent(intent: INTENT) {
+        viewModel.dispatchIntent(intent)
+    }
 
     //region Props
     protected var binding: ViewDataBinding? = null
@@ -132,17 +142,10 @@ abstract class BaseFragment : Fragment(){
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        if (activity is AppCompatActivity) {
-//            progressBar =
-//                ((activity as AppCompatActivity).findViewById(R.id.toolbar) as Toolbar).findViewById(
-//                    R.id.progressBar
-//                )
-//            showProgress(false, false)
-//        }
         initialize(savedInstanceState)
         attachListeners()
     }
-
-
     //endregion
+
+
 }
