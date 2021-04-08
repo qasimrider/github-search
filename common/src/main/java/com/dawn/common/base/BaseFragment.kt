@@ -23,22 +23,11 @@ import com.dawn.common.mvi.ViewIntent
 import com.dawn.common.mvi.ViewState
 
 
-abstract class BaseFragment
-<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState>
-    : Fragment(){
-
-
-
-
-    abstract fun initEVENT()
-    fun dispatchIntent(intent: INTENT) {
-        viewModel.dispatchIntent(intent)
-    }
+abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState> :
+    Fragment() {
 
     //region Props
     protected var binding: ViewDataBinding? = null
-    protected open var shouldBindData = false
-
     protected var progressBar: ProgressBar? = null
     //endregion
 
@@ -64,7 +53,6 @@ abstract class BaseFragment
     }
 
     //endregion
-
 
     //region Toast Message
     open fun showMessage(messageBody: String) {
@@ -98,21 +86,11 @@ abstract class BaseFragment
     //endregion
 
     //region Abstracts
-//    protected open var shouldBindData = false
     protected abstract fun layoutResourceId(): Int
-    protected open fun attachListeners() {
-
-    }
+    protected open fun attachListeners() {}
+    abstract fun getViewModel(): BaseViewModel<INTENT, ACTION, STATE>
 
     abstract fun initialize(savedInstanceState: Bundle?)
-    //endregion
-
-    //region Fragment Title and Subtitle
-    protected fun setScreenTitle(title: String, subtitle: String) {
-        (activity as AppCompatActivity).supportActionBar?.title = title
-        (activity as AppCompatActivity).supportActionBar?.subtitle = subtitle
-
-    }
     //endregion
 
     //region LifeCycle
@@ -121,29 +99,22 @@ abstract class BaseFragment
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return if (shouldBindData) {
-            binding = DataBindingUtil.inflate(
-                    inflater, layoutResourceId(), container, false
-            )
-            Log.d("Binding", "OnCreateView");
-            binding!!.lifecycleOwner = viewLifecycleOwner
-            binding!!.root
-
-        } else
-            inflater.inflate(layoutResourceId(), container, false)
-
-
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
+        binding = DataBindingUtil.inflate(inflater, layoutResourceId(), container, false)
+        binding!!.lifecycleOwner = viewLifecycleOwner
+        return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initialize(savedInstanceState)
         attachListeners()
+    }
+    //endregion
+
+    //region State Management
+
+    fun dispatchIntent(intent: INTENT) {
+        getViewModel().dispatchIntent(intent)
     }
     //endregion
 

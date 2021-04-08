@@ -14,30 +14,22 @@ abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : V
     ViewModel(), IModel<STATE, INTENT> {
 
 
+    //region Live Data
     var errorEntity: SingleLiveEvent<ErrorEntity> = SingleLiveEvent()
-    var operationStatus: SingleLiveEvent<Operation> = SingleLiveEvent()
-
-
     protected val mState = MutableLiveData<STATE>()
     override val state: LiveData<STATE>
         get() {
             return mState
         }
+    //endregion
 
     final override fun dispatchIntent(intent: INTENT) {
-
+        handleAction(intentToAction(intent))
     }
-
     abstract fun intentToAction(intent: INTENT): ACTION
     abstract fun handleAction(action: ACTION)
 
     protected fun handleFailure(errorEntity: ErrorEntity) {
         this.errorEntity.value = errorEntity
     }
-
-    sealed class Operation {
-        object Started : Operation()
-        object Completed : Operation()
-    }
-
 }

@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
 import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import com.dawn.common.base.BaseFragment
+import com.dawn.common.base.BaseViewModel
 import com.dawn.common.base.GeneralAdapter
 import com.dawn.common.extensions.*
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
@@ -25,7 +26,6 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
 
     //region Props
     private lateinit var viewBinding: GitHubReposListFragmentBinding
-    override var shouldBindData: Boolean = true
     private val adapter =
         GeneralAdapter(BR.repo, R.layout.repos_item, RepoDetailsView.DIFF_CALLBACK)
     //endregion
@@ -38,17 +38,14 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     override fun layoutResourceId(): Int = R.layout.git_hub_repos_list_fragment
 
     override fun initialize(savedInstanceState: Bundle?) {
-
         attachObservers()
-
         viewBinding = binding as GitHubReposListFragmentBinding
+        progressBar = viewBinding.progressBar
         viewBinding.viewModel = viewModel
         viewBinding.adapter = adapter
-//        viewBinding.reposRv.configureVerticalList(adapter)
-
-//        viewModel.getRepoSearchResult(GetGitHubRepoUsecase.Params("qasd"))
     }
 
+    override fun getViewModel(): BaseViewModel<GithubIntent, GitHubAction, GitHubState> = viewModel
 
     override fun attachListeners() {
         super.attachListeners()
@@ -76,35 +73,28 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     //endregion
 
     //region Observers
-    fun attachObservers() {
+    private fun attachObservers() {
         viewModel.run {
-            observe(searchReposList) {
-
-            }
+//            observe(searchReposList) {
+//
+//            }
             fault(errorEntity, ::handleFailure)
 
-            observe(state) {
-                when (state.value) {
+            observe(state) {state ->
 
-                    is GitHubState.Loading -> {
+                showProgress(state is GitHubState.Loading, state is GitHubState.Loading)
 
-                    }
+                when (state) {
 
                     is GitHubState.ResultSearch -> {
-
-                        Log.d(TAG, "attachObservers: ")
+                        adapter.submitList(state.repoList)
                     }
+                    is GitHubState.Error -> handleFailure(state.error)
                 }
-
             }
 
         }
     }
-
-    override fun initEVENT() {
-        TODO("Not yet implemented")
-    }
     //endregion
-
 
 }
