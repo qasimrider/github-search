@@ -12,7 +12,7 @@ fun Either<ErrorEntity, GitHubRepoView>.reduce(repoList: MutableLiveData<List<Re
         is Either.Left -> GitHubState.Error(error)
         is Either.Right -> {
             repoList.postValue(reponse.repoList)
-            GitHubState.ResultSearch(reponse.repoList!!)
+            GitHubState.ResultSearch(reponse)
         }
     }
 }

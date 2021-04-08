@@ -50,6 +50,21 @@
             app:layout_constraintTop_toBottomOf="@+id/repositoryLibTitle" />
 
 
+        <TextView
+            android:id="@+id/resultCount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/results"
+            android:visibility="gone"
+            android:textColor="@color/grey"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reposRv"
             android:layout_width="match_parent"
@@ -66,7 +81,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/searchEditText"
+            app:layout_constraintTop_toBottomOf="@+id/resultCount"
             app:showVerticalList="@{adapter}"
             tools:listitem="@layout/repos_item" />
 

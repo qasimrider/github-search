@@ -15,6 +15,7 @@ import com.dawn.common.base.BaseFragment
 import com.dawn.common.base.BaseViewModel
 import com.dawn.common.base.GeneralAdapter
 import com.dawn.common.extensions.*
+import com.dawn.dtos.gitHubSearch.GitHubRepoView
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
 import com.dawn.featuregithubsearch.BR
 import com.dawn.featuregithubsearch.R
@@ -101,7 +102,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                 showProgress(state is GitHubState.Loading, state is GitHubState.Loading)
                 when (state) {
                     is GitHubState.ResultSearch -> {
-                        populateList(state.repoList)
+                        populateList(state.reposData)
                     }
                     is GitHubState.Error -> handleFailure(state.error)
                 }
@@ -114,12 +115,15 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     //endregion
 
     //region Recycler View Population
-    private fun populateList(repoList: List<RepoDetailsView>) {
-        if (repoList.isNotEmpty()) {
+    private fun populateList(reposData: GitHubRepoView) {
+        if (reposData.repoList.isNotEmpty()) {
+            viewBinding.resultCount.visible()
+            viewBinding.resultCount.text = getString(R.string.results, reposData.totalCount.toString())
             viewBinding.typeSearchMessage.gone()
-            adapter.submitList(repoList)
+            adapter.submitList(reposData.repoList)
         }
         else{
+            viewBinding.resultCount.gone()
             viewBinding.typeSearchMessage.visible()
             viewBinding.typeSearchMessage.text= getString(R.string.no_match_found)
         }

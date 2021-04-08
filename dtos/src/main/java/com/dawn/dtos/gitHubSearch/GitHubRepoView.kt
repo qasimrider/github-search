@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 
 @Parcelize
 data class GitHubRepoView(
-    val repoList: List<RepoDetailsView>?,
+    val repoList: List<RepoDetailsView>,
     val totalCount: Int?
 ) : Parcelable
 
