@@ -101,13 +101,27 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                 showProgress(state is GitHubState.Loading, state is GitHubState.Loading)
                 when (state) {
                     is GitHubState.ResultSearch -> {
-                        viewBinding.typeSearchMessage.gone()
-                        adapter.submitList(state.repoList)
+                        populateList(state.repoList)
                     }
                     is GitHubState.Error -> handleFailure(state.error)
                 }
             }
 
+        }
+    }
+
+
+    //endregion
+
+    //region Recycler View Population
+    private fun populateList(repoList: List<RepoDetailsView>) {
+        if (repoList.isNotEmpty()) {
+            viewBinding.typeSearchMessage.gone()
+            adapter.submitList(repoList)
+        }
+        else{
+            viewBinding.typeSearchMessage.visible()
+            viewBinding.typeSearchMessage.text= getString(R.string.no_match_found)
         }
     }
     //endregion

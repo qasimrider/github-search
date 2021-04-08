@@ -2,4 +2,6 @@
 
     <string name="repo_item_transition_name">repo_item_%1$s</string>
     <string name="repo_item_detail_transition_name">repo_detail_transition</string>
+    <string name="no_match_found">No Match Found</string>
+    <string name="please_type_at_least_3_letters_to_search">Please Type at least 3 letters to Search</string>
 </resources>

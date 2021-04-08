@@ -80,7 +80,7 @@
             android:textSize="14sp"
             android:textColor="@color/black"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Please Type at least 3 letters to Search"
+            android:text="@string/please_type_at_least_3_letters_to_search"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
