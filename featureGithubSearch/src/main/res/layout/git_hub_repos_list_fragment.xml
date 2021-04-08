@@ -26,29 +26,42 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/open_sans_bold"
-            android:text="Repository Library"
+            android:text="@string/repository_library"
             android:textColor="@color/black"
             android:textSize="23dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+
         <EditText
             android:id="@+id/searchEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:textColor="@color/black"
             android:background="@drawable/corner_background"
             android:drawableLeft="@drawable/ic_search"
-            android:padding="13dp"
+            android:drawablePadding="13dp"
             android:imeOptions="actionDone"
             android:inputType="text"
-            android:drawablePadding="13dp"
-            app:layout_constraintEnd_toEndOf="@+id/repositoryLibTitle"
+            android:padding="13dp"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@+id/searchButton"
             app:layout_constraintStart_toStartOf="@+id/repositoryLibTitle"
             app:layout_constraintTop_toBottomOf="@+id/repositoryLibTitle" />
 
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            app:backgroundTint="@color/alto"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@+id/searchEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/searchEditText" />
 
         <TextView
             android:id="@+id/resultCount"
@@ -58,9 +71,9 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="16dp"
             android:text="@string/results"
-            android:visibility="gone"
             android:textColor="@color/grey"
             android:textSize="16sp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchEditText" />
@@ -91,11 +104,11 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
-            android:gravity="center"
-            android:textSize="14sp"
-            android:textColor="@color/black"
             android:fontFamily="@font/open_sans_bold"
+            android:gravity="center"
             android:text="@string/please_type_at_least_3_letters_to_search"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

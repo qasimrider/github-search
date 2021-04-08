@@ -62,15 +62,18 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     override fun attachListeners() {
         super.attachListeners()
         viewBinding.searchEditText.requestFocus()
-        viewBinding.searchEditText.doOnTextChanged { text, _, _, _ ->
-            if (text.toString() != previousText) {
-                text?.let {
-                    it.length
-                        .requireSize()
-                        .runIfTrue {
-                            previousText = text.toString()
-                            dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
-                        }
+
+        viewBinding.searchButton.setOnClickListener {
+            viewBinding.searchEditText.run {
+                if (text.toString() != previousText) {
+                    text?.let {
+                        it.length
+                            .requireSize()
+                            .runIfTrue {
+                                previousText = text.toString()
+                                dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
+                            }
+                    }
                 }
             }
         }
@@ -118,14 +121,14 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     private fun populateList(reposData: GitHubRepoView) {
         if (reposData.repoList.isNotEmpty()) {
             viewBinding.resultCount.visible()
-            viewBinding.resultCount.text = getString(R.string.results, reposData.totalCount.toString())
+            viewBinding.resultCount.text =
+                getString(R.string.results, reposData.totalCount.toString())
             viewBinding.typeSearchMessage.gone()
             adapter.submitList(reposData.repoList)
-        }
-        else{
+        } else {
             viewBinding.resultCount.gone()
             viewBinding.typeSearchMessage.visible()
-            viewBinding.typeSearchMessage.text= getString(R.string.no_match_found)
+            viewBinding.typeSearchMessage.text = getString(R.string.no_match_found)
         }
     }
     //endregion

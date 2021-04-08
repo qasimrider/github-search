@@ -5,4 +5,9 @@
     <string name="no_match_found">No Match Found</string>
     <string name="please_type_at_least_3_letters_to_search">Please Type at least 3 letters to Search</string>
     <string name="results">%s results</string>
+    <string name="repository_library">Repository Library</string>
+    <string name="search">Search</string>
+    <string name="forks">Forks</string>
+    <string name="starred_by">Starred By</string>
+    <string name="issues">Issues</string>
 </resources>
