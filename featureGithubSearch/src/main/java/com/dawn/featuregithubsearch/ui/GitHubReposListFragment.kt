@@ -39,6 +39,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     private val viewModel by sharedGraphViewModel<GitHubReposListViewModel>(R.id.githubSearchNavigation)
     //endregion
 
+    //region Overrides
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         postponeEnterTransition()
@@ -61,7 +62,6 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
         super.attachListeners()
         viewBinding.searchEditText.requestFocus()
         viewBinding.searchEditText.doOnTextChanged { text, _, _, _ ->
-            Log.d(TAG, "attachListeners: ")
             if (text.toString() != previousText) {
                 text?.let {
                     it.length
@@ -76,7 +76,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
 
         adapter.clickListener = { repo, view ->
 
-            exitTransition = MaterialElevationScale(false).apply {
+            exitTransition = MaterialElevationScale(true).apply {
                 duration = 400L
             }
             reenterTransition = MaterialElevationScale(true).apply {
