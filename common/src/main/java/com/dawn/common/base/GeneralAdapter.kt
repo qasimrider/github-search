@@ -18,10 +18,10 @@ class GeneralAdapter<T>(
 ) :
     ListAdapter<T, GeneralAdapter<T>.ViewHolder>(diffCallback) {
 
-    var clickListener: (T,View) -> Unit = {_,_->}
-    var clickListenerSpecific: (T, View) -> Unit = {_,_ -> }
+    var clickListener: (T, View) -> Unit = { _, _ -> }
+    var clickListenerSpecific: (T, View) -> Unit = { _, _ -> }
 
-    var customBindings : (T,bindView:ViewDataBinding) -> Unit = {_,_ ->}
+    var customBindings: (T, bindView: ViewDataBinding) -> Unit = { _, _ -> }
 
     inner class ViewHolder(private val itemBinding: ViewDataBinding) :
         RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
@@ -35,7 +35,7 @@ class GeneralAdapter<T>(
         }
 
         fun bind(item: T) {
-            customBindings(item,itemBinding)
+            customBindings(item, itemBinding)
             itemBinding.setVariable(variableId, item)
             itemBinding.executePendingBindings()
         }
@@ -43,7 +43,7 @@ class GeneralAdapter<T>(
         override fun onClick(v: View?) {
             (getItem(layoutPosition)).run {
                 if (listOfClickableIds.isEmpty())
-                    clickListener(this,v!!)
+                    clickListener(this, v!!)
                 else
                     clickListenerSpecific(this, v!!)
             }
@@ -56,10 +56,6 @@ class GeneralAdapter<T>(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(getItem(position))
-
-    override fun getItemViewType(position: Int): Int {
-        return super.getItemViewType(position)
-    }
 
 }
 

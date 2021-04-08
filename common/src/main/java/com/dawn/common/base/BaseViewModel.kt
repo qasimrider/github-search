@@ -10,7 +10,7 @@ import com.dawn.common.mvi.ViewIntent
 import com.dawn.common.mvi.ViewState
 import com.dawn.common.singleLiveData.SingleLiveEventMutableLiveData
 
-abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState>() :
+abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState> :
     ViewModel(), IModel<STATE, INTENT> {
 
 

@@ -1,7 +1,6 @@
 package com.dawn.common.functional
 
 
-
 //Please note that the either class itself doesn't hold any values. Its child classes does.
 sealed class Either<out L, out R> {
     // by FP conventions left would be the failure of this com.nytimes.newsapp.common.functional.Either

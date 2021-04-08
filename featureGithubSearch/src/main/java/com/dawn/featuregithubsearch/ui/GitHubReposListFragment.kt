@@ -1,16 +1,10 @@
 package com.dawn.featuregithubsearch.ui
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import androidx.core.view.doOnPreDraw
-import androidx.core.widget.doOnTextChanged
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
-import androidx.viewbinding.ViewBinding
-import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import com.dawn.common.base.BaseFragment
 import com.dawn.common.base.BaseViewModel
 import com.dawn.common.base.GeneralAdapter

@@ -18,4 +18,4 @@ val Any.TAG: String
 
 
 // use TAG function but for that while using LOG we have to add method parenthesis at the end of TAG()
-inline fun < reified T> T.TAG(): String = T::class.java.simpleName
+inline fun <reified T> T.tag(): String = T::class.java.simpleName

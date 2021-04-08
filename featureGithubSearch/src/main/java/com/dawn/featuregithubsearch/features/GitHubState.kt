@@ -3,7 +3,6 @@ package com.dawn.featuregithubsearch.features
 import com.dawn.common.error.ErrorEntity
 import com.dawn.common.mvi.ViewState
 import com.dawn.dtos.gitHubSearch.GitHubRepoView
-import com.dawn.dtos.gitHubSearch.RepoDetailsView
 
 sealed class GitHubState : ViewState {
 

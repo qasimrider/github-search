@@ -1,5 +1,3 @@
-
-
 import org.gradle.kotlin.dsl.version
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
@@ -17,7 +15,6 @@ const val PLUGIN_PROTOBUF = "com.google.protobuf"
 const val PLUGIN_KOTLIN_PARCELIZE = "kotlin-parcelize"
 
 
-
 fun PluginDependenciesSpec.androidApplication(): PluginDependencySpec {
     return id(PLUGIN_ANDROID_APPLICATION)
 }
@@ -31,6 +28,7 @@ fun PluginDependenciesSpec.androidLibrary(): PluginDependencySpec {
 fun PluginDependenciesSpec.kotlin(): PluginDependencySpec {
     return id(PLUGIN_KOTLIN)
 }
+
 fun PluginDependenciesSpec.kotlinParcelize(): PluginDependencySpec {
     return id(PLUGIN_KOTLIN_PARCELIZE)
 }

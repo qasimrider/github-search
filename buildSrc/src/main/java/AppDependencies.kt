@@ -1,5 +1,4 @@
 import org.gradle.api.artifacts.dsl.DependencyHandler
-import org.gradle.api.internal.artifacts.dependencies.AbstractExternalModuleDependency
 
 /**
  * This class have all the dependencies of the project
@@ -9,72 +8,76 @@ import org.gradle.api.internal.artifacts.dependencies.AbstractExternalModuleDepe
 object AppDependencies {
 
 
-
-
     //region All Dependencies
 
     //region Kotlin std
-    val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     //endregion
 
     //region Android UI
-    private val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
-    private val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
-    private val constraintLayout ="androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
-    private val material = "com.google.android.material:material:${Versions.materialComponents}"
+    private const val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    private const val coreKtx = "androidx.core:core-ktx:${Versions.coreKtx}"
+    private const val constraintLayout =
+        "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    private const val material = "com.google.android.material:material:${Versions.materialComponents}"
     //endregion
 
     //region Navigation
-    private val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationKotlin}"
-    private val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationKotlin}"
+    private const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigationKotlin}"
+    private const val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationKotlin}"
 
     //endregion
 
     //region LifeCycle
-    private val lifeCycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycle}"
-    private val lifeCycleSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifeCycle}"
+    private const val lifeCycle = "androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycle}"
+    private const val lifeCycleSavedState = "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifeCycle}"
     //endregion
 
     //region Coroutines
-    private val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-    private val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
+    private const val coroutinesCore =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+    private const val coroutinesAndroid =
+        "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}"
     //endregion
 
     //region Retrofit
-    private val retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitAdapter}"
-    private val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2}"
-    private val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit2}"
-    private val retrofitLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.retrofitLogging}"
+    private const val retrofitAdapter =
+        "com.squareup.retrofit2:adapter-rxjava2:${Versions.retrofitAdapter}"
+    private const val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit2}"
+    private const val retrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit2}"
+    private const val retrofitLogging =
+        "com.squareup.okhttp3:logging-interceptor:${Versions.retrofitLogging}"
     //endregion
 
     //region Androidx
-    private val scopeAndroidx = "org.koin:koin-androidx-scope:${Versions.androidx}"
-    private val viewModelAndroidx = "org.koin:koin-androidx-viewmodel:${Versions.androidx}"
-    private val fragmentAndroidx =  "org.koin:koin-androidx-fragment:${Versions.androidx}"
-    private val koinAndroid =  "org.koin:koin-android:${Versions.androidx}"
+    private const val scopeAndroidx = "org.koin:koin-androidx-scope:${Versions.androidx}"
+    private const val viewModelAndroidx = "org.koin:koin-androidx-viewmodel:${Versions.androidx}"
+    private const val fragmentAndroidx = "org.koin:koin-androidx-fragment:${Versions.androidx}"
+    private const val koinAndroid = "org.koin:koin-android:${Versions.androidx}"
 //    private val extensionsAndroidx =  "org.koin:koin-androidx-ext:${Versions.androidx}"
     //endregion
 
     //region MultiScreen Support
-    private val multiScreenSupport="com.intuit.sdp:sdp-android:${Versions.multiScreenSizes}"
+    private const val multiScreenSupport = "com.intuit.sdp:sdp-android:${Versions.multiScreenSizes}"
     //endregion
 
     //region Testing
-    private val mockito = "org.mockito:mockito-core:${Versions.mockito}"
-    private val junit = "junit:junit:${Versions.junit}"
-    private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
-    private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
-    private val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
+    private const val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    private const val junit = "junit:junit:${Versions.junit}"
+    private const val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
+    private const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.fragmentTesting}"
     //endregion
 
     //region Image Libs
-    private val glide = "com.github.bumptech.glide:glide:4.11.0"
-    private val circleImageView = "de.hdodenhof:circleimageview:3.1.0"
+    private const val glide = "com.github.bumptech.glide:glide:4.11.0"
+    private const val circleImageView = "de.hdodenhof:circleimageview:3.1.0"
     //endregion
 
     //region Serialization
 
-    private val kotlinSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
+    private const val kotlinSerialization =
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.kotlinSerialization}"
     //endregion
     // endregion
 
@@ -137,7 +140,7 @@ fun DependencyHandler.implementation(list: List<String>) {
     }
 }
 
-fun DependencyHandler.implementation(singleDependency: String): String {
+fun implementation(singleDependency: String): String {
     return "implementation$singleDependency"
 
 }

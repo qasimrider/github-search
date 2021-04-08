@@ -4,9 +4,9 @@ import com.dawn.business.githubrepo.usecase.GetGitHubRepoUsecase
 import org.koin.dsl.module
 
 
-val useCasesDependencies = module{
+val useCasesDependencies = module {
 
-    single{
+    single {
         GetGitHubRepoUsecase(get())
     }
 }

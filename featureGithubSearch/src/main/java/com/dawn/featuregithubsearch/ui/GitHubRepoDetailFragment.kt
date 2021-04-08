@@ -8,7 +8,6 @@ import com.dawn.common.base.BaseViewModel
 import com.dawn.common.extensions.popBackStack
 import com.dawn.featuregithubsearch.R
 import com.dawn.featuregithubsearch.databinding.GitHubRepoDetailFragmentBinding
-import com.dawn.featuregithubsearch.BR
 import com.dawn.featuregithubsearch.features.GitHubAction
 import com.dawn.featuregithubsearch.features.GitHubState
 import com.dawn.featuregithubsearch.features.GithubIntent

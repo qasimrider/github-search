@@ -58,8 +58,8 @@ fun <T> Call<T>.requestBlocking(): Either<ErrorEntity, T> {
 }
 
 
-inline fun <reified T> Gson.fromJson(json: String) =
-    fromJson<T>(json, object : TypeToken<T>() {}.type)
+inline fun <reified T> Gson.fromJson(json: String): T =
+    fromJson(json, object : TypeToken<T>() {}.type)
 
 
 

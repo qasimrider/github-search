@@ -23,7 +23,6 @@ data class Owner(
     val subscriptions_url: String?,
     val type: String?,
     val url: String?
-)
-{
+) {
     fun toView() = OwnerView(avatar_url!!)
 }

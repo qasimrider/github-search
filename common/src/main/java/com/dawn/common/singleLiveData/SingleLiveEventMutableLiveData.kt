@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import com.dawn.common.extensions.TAG
+import com.dawn.common.extensions.tag
 import java.util.concurrent.atomic.AtomicBoolean
 
 class SingleLiveEventMutableLiveData<T> : MutableLiveData<T>() {
@@ -13,14 +13,14 @@ class SingleLiveEventMutableLiveData<T> : MutableLiveData<T>() {
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
 
 
-        super.observe(owner, Observer<T> { t ->
+        super.observe(owner, { t ->
             if (pending.compareAndSet(true, false)) {
                 observer.onChanged(t)
             }
         })
 
         if (hasActiveObservers()) {
-            Log.w(TAG(), "single observer is notified of change ")
+            Log.w(tag(), "single observer is notified of change ")
         }
     }
 
@@ -29,7 +29,7 @@ class SingleLiveEventMutableLiveData<T> : MutableLiveData<T>() {
         super.setValue(t)
     }
 
-    public override fun postValue(value: T) {
+    override fun postValue(value: T) {
         super.postValue(value)
     }
 

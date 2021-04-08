@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-abstract class BaseUseCase<out Type, in Params>() {
+abstract class BaseUseCase<out Type, in Params> {
     abstract suspend fun run(param: Params): Either<ErrorEntity, Type>
     operator fun invoke(
         viewModelScope: CoroutineScope,

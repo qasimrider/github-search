@@ -9,7 +9,7 @@
         android:id="@+id/gitHubSearchList"
         android:name="com.dawn.featuregithubsearch.ui.GitHubReposListFragment"
         tools:layout="@layout/git_hub_repos_list_fragment"
-        android:label="GitHubRepoList" >
+        android:label="GitHubRepoList">
 
         <action
             android:id="@+id/to_gitHubDetail"
@@ -21,7 +21,7 @@
         android:id="@+id/gitHubDetail"
         tools:layout="@layout/git_hub_repo_detail_fragment"
         android:name="com.dawn.featuregithubsearch.ui.GitHubRepoDetailFragment"
-        android:label="GitHUbDetail" >
+        android:label="GitHUbDetail">
 
         <argument
             android:name="repoDetails"

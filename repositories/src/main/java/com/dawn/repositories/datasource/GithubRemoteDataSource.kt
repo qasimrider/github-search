@@ -6,6 +6,6 @@ import com.dawn.dtos.gitHubSearch.GitHubRepoView
 
 interface GithubRemoteDataSource {
 
-    fun getGitHubRepos(query: String) : Either<ErrorEntity,GitHubRepoView>
+    fun getGitHubRepos(query: String): Either<ErrorEntity, GitHubRepoView>
 
 }

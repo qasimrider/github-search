@@ -49,11 +49,11 @@ fun Any.toast(context: Context, duration: Int = Toast.LENGTH_SHORT) {
 
 
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int): View =
-        LayoutInflater.from(context).inflate(layoutRes, this, false)
+    LayoutInflater.from(context).inflate(layoutRes, this, false)
 
 fun <T : ViewDataBinding> ViewGroup.dataBind(@LayoutRes layoutRes: Int): T =
 
-        DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
+    DataBindingUtil.inflate(LayoutInflater.from(context), layoutRes, this, false)
 
 
 fun Int.setResourceColor(context: Context) = ContextCompat.getColor(context, this)

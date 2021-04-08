@@ -4,7 +4,6 @@ import android.os.Parcelable
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.DiffUtil
 import kotlinx.parcelize.Parcelize
-import kotlinx.serialization.Serializable
 
 @Parcelize
 data class GitHubRepoView(
@@ -14,12 +13,13 @@ data class GitHubRepoView(
 
 
 @Parcelize
-data class RepoDetailsView(val id : Int, val fullName: String?, val description: String? ,val forks : Int,
-                           val issuesCount : Int,val language: String?,val starredCount : Int,
-                           val owner : OwnerView) : Parcelable
-{
+data class RepoDetailsView(
+    val id: Int, val fullName: String?, val description: String?, val forks: Int,
+    val issuesCount: Int, val language: String?, val starredCount: Int,
+    val owner: OwnerView
+) : Parcelable {
 
-        companion object {
+    companion object {
 
         val DIFF_CALLBACK: DiffUtil.ItemCallback<RepoDetailsView> =
             object : DiffUtil.ItemCallback<RepoDetailsView>() {
@@ -37,7 +37,6 @@ data class RepoDetailsView(val id : Int, val fullName: String?, val description:
                     return oldItem == newItem
                 }
             }
-
 
 
     }

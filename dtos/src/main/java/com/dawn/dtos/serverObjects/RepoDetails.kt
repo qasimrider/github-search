@@ -1,6 +1,5 @@
 package com.dawn.dtos.serverObjects
 
-import com.dawn.dtos.gitHubSearch.GitHubRepoView
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable

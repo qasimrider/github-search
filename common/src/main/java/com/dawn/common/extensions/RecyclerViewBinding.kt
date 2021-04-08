@@ -22,7 +22,7 @@ enum class MarginStrategy {
 @BindingAdapter(value = ["showVerticalList", "items"], requireAll = false)
 fun <T> RecyclerView.bindRecyclerViewAdapter(adapter: ListAdapter<*, *>, list: List<T>?) {
     this.run {
-        this.configureVerticalList(adapter,0)
+        this.configureVerticalList(adapter, 0)
         this.adapter = adapter
     }
     if (this.adapter is ListAdapter<*, *>) {
@@ -32,8 +32,8 @@ fun <T> RecyclerView.bindRecyclerViewAdapter(adapter: ListAdapter<*, *>, list: L
 }
 
 fun <T, VH : RecyclerView.ViewHolder> RecyclerView.configureVerticalList(
-        adapter: ListAdapter<T, VH>,
-        margin: Int = 10.toPx(),
+    adapter: ListAdapter<T, VH>,
+    margin: Int = 10.toPx(),
 ) {
 
     layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
@@ -44,8 +44,8 @@ fun <T, VH : RecyclerView.ViewHolder> RecyclerView.configureVerticalList(
 }
 
 fun RecyclerView.addItemMargins(
-        spaceHeight: Int,
-        marginStrategy: MarginStrategy = MarginStrategy.ONLY_TOP,
+    spaceHeight: Int,
+    marginStrategy: MarginStrategy = MarginStrategy.ONLY_TOP,
 ) {
 
     addItemDecoration(MarginItemDecoration(spaceHeight, marginStrategy))
@@ -53,14 +53,14 @@ fun RecyclerView.addItemMargins(
 
 
 class MarginItemDecoration(
-        private val spaceHeight: Int,
-        private val marginStrategy: MarginStrategy,
+    private val spaceHeight: Int,
+    private val marginStrategy: MarginStrategy,
 ) :
-        RecyclerView.ItemDecoration() {
+    RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
-            outRect: Rect, view: View,
-            parent: RecyclerView, state: RecyclerView.State,
+        outRect: Rect, view: View,
+        parent: RecyclerView, state: RecyclerView.State,
     ) {
         val position = parent.getChildAdapterPosition(view)
 //        val itemCount = state.itemCount

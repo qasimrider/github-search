@@ -1,17 +1,14 @@
-
 buildscript {
-val kotlin_version by extra("1.4.32")
-    //    val Versions.kotlin by extra("1.4.32")
     repositories {
         google()
         jcenter()
 
     }
     dependencies {
-        classpath ("com.android.tools.build:gradle:4.1.3")
-        classpath ("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
-        classpath ("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}")
-        classpath ("android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0")
+        classpath("com.android.tools.build:gradle:4.1.3")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.nav_version}")
+        classpath("android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0")
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle.kts files

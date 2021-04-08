@@ -1,4 +1,3 @@
-
 //version constants for the Kotlin DSL dependencies
 object Versions {
     //app level
@@ -23,9 +22,9 @@ object Versions {
     const val kotlinSerialization = "1.1.0"
 
     //test
-    val junit = "4.12"
-    val mockito = "2.25.0"
-    val extJunit = "1.1.1"
-    val espresso = "3.2.0"
-    val fragmentTesting = "1.3.1"
+    const val junit = "4.12"
+    const val mockito = "2.25.0"
+    const val extJunit = "1.1.1"
+    const val espresso = "3.2.0"
+    const val fragmentTesting = "1.3.1"
 }

@@ -1,15 +1,12 @@
 package com.dawn.common.base
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.ProgressBar
 import android.widget.Toast
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -64,11 +61,11 @@ abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
     protected fun handleFailure(errorEntity: ErrorEntity?) {
         showProgress(false, lockScreen = false)
         when (errorEntity) {
-            is ErrorEntity.AuthError -> showMessage(
+            is AuthError -> showMessage(
                 getString(R.string.failure_authorization)
             )
-            is ErrorEntity.Forbidden -> showMessage(getString(R.string.failure_forbidden))
-            is ErrorEntity.InternalServerError -> showMessage(
+            is Forbidden -> showMessage(getString(R.string.failure_forbidden))
+            is InternalServerError -> showMessage(
                 getString(R.string.failure_forbidden)
             )
             is BadRequest -> showMessage(getString(R.string.failure_bad_request))
