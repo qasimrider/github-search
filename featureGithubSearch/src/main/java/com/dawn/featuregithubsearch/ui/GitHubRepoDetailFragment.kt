@@ -44,11 +44,8 @@ class GitHubRepoDetailFragment : BaseFragment<GithubIntent, GitHubAction, GitHub
         viewBinding = binding as GitHubRepoDetailFragmentBinding
         args.also {
             viewBinding.apply {
-
-                setVariable(BR.repo, it.repoDetails)
-//                repo = it.repoDetails
+                repo = it.repoDetails
             }
-
         }
     }
 

@@ -59,7 +59,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
 
     override fun attachListeners() {
         super.attachListeners()
-
+        viewBinding.searchEditText.requestFocus()
         viewBinding.searchEditText.doOnTextChanged { text, _, _, _ ->
             Log.d(TAG, "attachListeners: ")
             if (text.toString() != previousText) {
@@ -85,8 +85,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
             val repoItemDetailTransition = getString(R.string.repo_item_detail_transition_name)
             val extras = FragmentNavigatorExtras(view to repoItemDetailTransition)
             findNavController().navigate(
-                GitHubReposListFragmentDirections.toGitHubDetail(repo),
-                extras
+                GitHubReposListFragmentDirections.toGitHubDetail(repo), extras
             )
         }
     }
@@ -96,17 +95,11 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     //region Observers
     private fun attachObservers() {
         viewModel.run {
-//            observe(searchReposList) {
-//
-//            }
             fault(errorEntity, ::handleFailure)
 
             observe(state) { state ->
-
                 showProgress(state is GitHubState.Loading, state is GitHubState.Loading)
-
                 when (state) {
-
                     is GitHubState.ResultSearch -> {
                         adapter.submitList(state.repoList)
                     }
