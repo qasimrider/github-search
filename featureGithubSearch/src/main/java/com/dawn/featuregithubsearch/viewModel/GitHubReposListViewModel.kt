@@ -26,7 +26,6 @@ class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUs
         getGitHubRepoUsecase(viewModelScope, params) { response ->
             mState.postValue(response.reduce(_reposList))
 
-
         }
     }
     //endregion

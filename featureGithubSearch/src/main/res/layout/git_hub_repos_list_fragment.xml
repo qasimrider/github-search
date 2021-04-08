@@ -70,6 +70,22 @@
             app:showVerticalList="@{adapter}"
             tools:listitem="@layout/repos_item" />
 
+        <TextView
+            android:id="@+id/typeSearchMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans_bold"
+            android:text="Please Type at least 3 letters to Search"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ProgressBar
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"

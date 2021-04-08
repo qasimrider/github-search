@@ -101,6 +101,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                 showProgress(state is GitHubState.Loading, state is GitHubState.Loading)
                 when (state) {
                     is GitHubState.ResultSearch -> {
+                        viewBinding.typeSearchMessage.gone()
                         adapter.submitList(state.repoList)
                     }
                     is GitHubState.Error -> handleFailure(state.error)
