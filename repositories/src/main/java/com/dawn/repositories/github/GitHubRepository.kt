@@ -6,5 +6,5 @@ import com.dawn.dtos.gitHubSearch.GitHubRepoView
 
 interface GitHubRepository {
 
-    fun getGitHubRepos(query: String): Either<ErrorEntity, GitHubRepoView>
+    suspend fun getGitHubRepos(query: String): Either<ErrorEntity, GitHubRepoView>
 }

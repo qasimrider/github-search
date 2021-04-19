@@ -5,7 +5,7 @@ import com.dawn.repositories.GitHubSearchApiService
 
 class GithubRemoteDataSourceImpl(private val gitHubSearchApiService: GitHubSearchApiService) :
     GithubRemoteDataSource {
-    override fun getGitHubRepos(query: String) =
+    override suspend fun getGitHubRepos(query: String) =
         gitHubSearchApiService.getRepoSearch(query).requestBlocking { it.toView() }
 
 }
