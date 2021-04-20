@@ -31,6 +31,7 @@ fun <T, R> Call<T>.requestTransformBlocking(transform: (T) -> R): Either<ErrorEn
 fun <T, R> Call<T>.requestBlocking(transform: (T) -> R): Either<ErrorEntity, R> {
     return try {
         val response = execute()
+        response.errorBody()
         when (response.isSuccessful) {
             true -> Either.Right(transform(response.body()!!))
 

@@ -86,6 +86,7 @@ abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
             is UniqueConstraintError -> showMessage(getString(R.string.failure_unique_constraint))
             is ServerError -> showMessage(getString(R.string.failure_server_error))
             is NetworkConnection -> showMessage(getString(R.string.failure_network_connection))
+            is ApiRateLimitExceeded -> showMessage(errorEntity.message)
         }
     }
     //endregion

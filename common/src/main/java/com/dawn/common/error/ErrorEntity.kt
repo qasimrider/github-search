@@ -25,6 +25,8 @@ sealed class ErrorEntity {
     object NoLanguagesAvailable : ErrorEntity()
     object FacebookLoginError : ErrorEntity()
 
+    data class ApiRateLimitExceeded(val message:String) : ErrorEntity()
+
     /** * Extend this class for feature specific failures.*/
     abstract class FeatureErrorEntity : ErrorEntity()
 }

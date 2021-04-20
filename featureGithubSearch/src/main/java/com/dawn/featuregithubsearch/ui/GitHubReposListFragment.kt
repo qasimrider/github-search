@@ -101,8 +101,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                         populateList(state.reposData)
                     }
                     is GitHubState.Error -> handleFailure(state.error)
-                    else -> throw IllegalStateException(getString(R.string.state_error))
-                }.exhaustive
+                }
             }
 
         }
