@@ -10,13 +10,20 @@ import com.dawn.common.mvi.ViewIntent
 import com.dawn.common.mvi.ViewState
 import com.dawn.common.singleLiveData.SingleLiveEventMutableLiveData
 
+
+/**
+ * This class is base class for all the view models to use this class you have to provide below properties
+ * [INTENT] Intention of view model to be used
+ * [ACTION] Action taken on the basis  of intent
+ * [STATE] what are the possible state of the views using this view model
+ */
 abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState> :
     ViewModel(), IModel<STATE, INTENT> {
 
 
     //region Live Data
     /**
-     * Handle the errors of the
+     * Handle the errors of the view model
      */
     var errorEntity: SingleLiveEventMutableLiveData<ErrorEntity> = SingleLiveEventMutableLiveData()
 

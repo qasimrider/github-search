@@ -22,7 +22,6 @@ import com.google.android.material.transition.MaterialElevationScale
 
 class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubState>() {
 
-
     //region Props
     private var previousText: String = ""
     private lateinit var viewBinding: GitHubReposListFragmentBinding
@@ -68,6 +67,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                                 }
                     }
                 }
+                else showMessage(context.getString(R.string.same_search_message))
             }
         }
 
@@ -92,7 +92,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     //region Observers
     private fun attachObservers() {
         viewModel.run {
-            fault(errorEntity, ::handleFailure)
+            fault(errorEntity,::handleFailure)
 
             observe(state) { state ->
                 showProgress(state is GitHubState.Loading, state is GitHubState.Loading)

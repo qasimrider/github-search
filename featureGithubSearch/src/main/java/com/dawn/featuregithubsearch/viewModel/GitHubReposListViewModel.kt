@@ -15,6 +15,9 @@ class GitHubReposListViewModel(private val getGitHubRepoUsecase: GetGitHubRepoUs
     BaseViewModel<GithubIntent, GitHubAction, GitHubState>() {
 
     //region Live Data
+    /**
+     * this is attached to the recycler view to provide this list of the repos.
+     */
     private val _reposList = MutableLiveData<List<RepoDetailsView>>()
     val reposList: LiveData<List<RepoDetailsView>>
         get() = _reposList
