@@ -10,4 +10,6 @@
     <string name="forks">Forks</string>
     <string name="starred_by">Starred By</string>
     <string name="issues">Issues</string>
+    <string name="state_error">Must Implement Proper States</string>
+    <string name="same_search_message">Search is same as previous</string>
 </resources>

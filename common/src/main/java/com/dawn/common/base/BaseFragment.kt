@@ -13,13 +13,17 @@ import androidx.fragment.app.Fragment
 import com.dawn.common.R
 import com.dawn.common.error.ErrorEntity
 import com.dawn.common.error.ErrorEntity.*
+import com.dawn.common.extensions.exhaustive
 import com.dawn.common.extensions.invisible
 import com.dawn.common.extensions.visible
 import com.dawn.common.mvi.ViewAction
 import com.dawn.common.mvi.ViewIntent
 import com.dawn.common.mvi.ViewState
 
-
+/**
+ * base class for all Fragments provide common functionality
+ *
+ */
 abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : ViewState> :
     Fragment() {
 
@@ -29,6 +33,10 @@ abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
     //endregion
 
     //region Progress bar
+    /**
+     * This method provide visibility of progress bar [showProgress]
+     * and block the Screen to be touchable if pass  true to the [lockScreen]
+     */
     protected fun showProgress(showProgress: Boolean, lockScreen: Boolean) {
         if (showProgress) {
             progressBar?.visible()
@@ -78,6 +86,7 @@ abstract class BaseFragment<INTENT : ViewIntent, ACTION : ViewAction, STATE : Vi
             is UniqueConstraintError -> showMessage(getString(R.string.failure_unique_constraint))
             is ServerError -> showMessage(getString(R.string.failure_server_error))
             is NetworkConnection -> showMessage(getString(R.string.failure_network_connection))
+            is ApiRateLimitExceeded -> showMessage(errorEntity.message)
         }
     }
     //endregion

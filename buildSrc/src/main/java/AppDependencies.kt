@@ -11,7 +11,7 @@ object AppDependencies {
     //region All Dependencies
 
     //region Kotlin std
-    const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
+    private const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
     //endregion
 
     //region Android UI

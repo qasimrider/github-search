@@ -2,6 +2,7 @@ package com.dawn.network
 
 import com.dawn.common.error.ErrorEntity
 import com.dawn.common.error.ErrorHandler
+import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.stream.MalformedJsonException
 import retrofit2.Response
@@ -30,6 +31,10 @@ class GeneralErrorImplementation : ErrorHandler {
             HttpURLConnection.HTTP_BAD_REQUEST -> ErrorEntity.BadRequest
             HttpURLConnection.HTTP_NOT_FOUND -> ErrorEntity.NotFound
             HttpURLConnection.HTTP_UNSUPPORTED_TYPE -> ErrorEntity.UnSupportedMediaType
+            HttpURLConnection.HTTP_FORBIDDEN -> {
+                ErrorEntity.ApiRateLimitExceeded("Api Rate Limit Exceeded")
+            }
+
             HttpURLConnection.HTTP_INTERNAL_ERROR -> {
                 ErrorEntity.ServerError
             }

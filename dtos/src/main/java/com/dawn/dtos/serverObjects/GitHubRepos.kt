@@ -11,6 +11,11 @@ data class GitHubRepos(
     val items: List<RepoDetails>?,
     val total_count: Int?
 ) {
+
+    /**
+     * This function is used to map the data to the [GitHubRepoView] so the View only have the data
+     * which is presenting on the UI
+     */
     fun toView() = GitHubRepoView(items!!.map {
         if (it.description == null) {
             RepoDetailsView(
