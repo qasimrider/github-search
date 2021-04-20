@@ -26,8 +26,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
     //region Props
     private var previousText: String = ""
     private lateinit var viewBinding: GitHubReposListFragmentBinding
-    private val adapter =
-        GeneralAdapter(BR.repo, R.layout.repos_item, RepoDetailsView.DIFF_CALLBACK)
+    private val adapter = GeneralAdapter(BR.repo, R.layout.repos_item, RepoDetailsView.DIFF_CALLBACK)
     //endregion
 
     //region Koin Injects
@@ -62,11 +61,11 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                 if (text.toString() != previousText) {
                     text?.let {
                         it.length
-                            .requireSize()
-                            .runIfTrue {
-                                previousText = text.toString()
-                                dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
-                            }
+                                .requireSize()
+                                .runIfTrue {
+                                    previousText = text.toString()
+                                    dispatchIntent(GithubIntent.SearchCharacter(text.toString()))
+                                }
                     }
                 }
             }
@@ -83,7 +82,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
             val repoItemDetailTransition = getString(R.string.repo_item_detail_transition_name)
             val extras = FragmentNavigatorExtras(view to repoItemDetailTransition)
             findNavController().navigate(
-                GitHubReposListFragmentDirections.toGitHubDetail(repo), extras
+                    GitHubReposListFragmentDirections.toGitHubDetail(repo), extras
             )
         }
     }
@@ -102,7 +101,8 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
                         populateList(state.reposData)
                     }
                     is GitHubState.Error -> handleFailure(state.error)
-                }
+                    else -> throw IllegalStateException(getString(R.string.state_error))
+                }.exhaustive
             }
 
         }
@@ -116,7 +116,7 @@ class GitHubReposListFragment : BaseFragment<GithubIntent, GitHubAction, GitHubS
         if (reposData.repoList.isNotEmpty()) {
             viewBinding.resultCount.visible()
             viewBinding.resultCount.text =
-                getString(R.string.results, reposData.totalCount.toString())
+                    getString(R.string.results, reposData.totalCount.toString())
             viewBinding.typeSearchMessage.gone()
             adapter.submitList(reposData.repoList)
         } else {

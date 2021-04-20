@@ -1,5 +1,6 @@
 package com.dawn.dtos.serverObjects
 
+import com.dawn.dtos.gitHubSearch.GitHubRepoView
 import com.dawn.dtos.gitHubSearch.RepoDetailsView
 import kotlinx.serialization.Contextual
 import kotlinx.serialization.Serializable
@@ -83,6 +84,11 @@ data class RepoDetails(
     val watchers: Int?,
     val watchers_count: Int?
 ) {
+
+    /**
+     * This function is used to map the data to the [RepoDetailsView] so the View only have the data
+     * which is presenting on the UI
+     */
     fun toView() = RepoDetailsView(
         id!!, full_name!!, description!!, forks!!, open_issues_count!!,
         language, stargazers_count!!, owner?.toView()!!

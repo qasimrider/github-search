@@ -15,7 +15,11 @@ abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : V
 
 
     //region Live Data
+    /**
+     * Handle the errors of the
+     */
     var errorEntity: SingleLiveEventMutableLiveData<ErrorEntity> = SingleLiveEventMutableLiveData()
+
     protected val mState = MutableLiveData<STATE>()
     override val state: LiveData<STATE>
         get() {
@@ -23,14 +27,19 @@ abstract class BaseViewModel<INTENT : ViewIntent, ACTION : ViewAction, STATE : V
         }
     //endregion
 
+    //region State Management
     final override fun dispatchIntent(intent: INTENT) {
         handleAction(intentToAction(intent))
     }
 
     abstract fun intentToAction(intent: INTENT): ACTION
-    abstract fun handleAction(action: ACTION)
 
+    abstract fun handleAction(action: ACTION)
+    //endregion
+
+    //region Failure Handling
     protected fun handleFailure(errorEntity: ErrorEntity) {
         this.errorEntity.value = errorEntity
     }
+    //endregion
 }
